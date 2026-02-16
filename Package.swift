@@ -14,14 +14,14 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/ivalx1s/darwin-relux.git", .upToNextMajor(from: "8.4.0")),
-        .package(url: "https://github.com/ivalx1s/swiftui-reluxrouter.git", .upToNextMajor(from: "10.1.0"))
+        .package(url: "https://github.com/relux-works/swift-relux.git", .upToNextMajor(from: "8.4.0")),
+        .package(url: "https://github.com/relux-works/swiftui-reluxrouter.git", .upToNextMajor(from: "10.1.0"))
     ],
     targets: [
         .target(
             name: "SwiftUIRelux",
             dependencies: [
-                .product(name: "Relux", package: "darwin-relux"),
+                .product(name: "Relux", package: "swift-relux"),
                 .product(name: "ReluxRouter", package: "swiftui-reluxrouter"),
             ],
             path: "Sources"
