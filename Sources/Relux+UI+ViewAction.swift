@@ -5,43 +5,48 @@
 //  Created by Ivan Oparin on 09.12.2025.
 //
 
+// NOTE: Commented out — parameter packs (`each Input`) crash swift-frontend
+// in Xcode 26 beta (Swift 6.2). Compiler segfaults during type-checking.
+// This struct was already deprecated in favor of ViewCallback, has zero usages
+// across the codebase, and ViewCallback covers all the same functionality
+// via tuple unpacking. Safe to remove entirely when convenient.
 
 // MARK: - Modern Implementation of ViewCallbacks with parameter packs in generic parameters (iOS 17+)
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-@available(*, deprecated, message: "Highly Experimental: ViewAction is subject to breaking, use ViewCallback")
-public extension Relux.UI {
-    struct ViewAction<each Input: Sendable>: Sendable, Equatable, Identifiable {
-        
-        public struct CallSite: Hashable, Sendable {
-            let file: String
-            let function: String
-            let line: UInt
-            
-            public init(file: String, function: String, line: UInt) {
-                self.file = file; self.function = function; self.line = line
-            }
-        }
-        
-        public let id: CallSite
-        
-        private let action: @Sendable (repeat each Input) async -> Void
-        
-        public init(
-            file: String = #fileID,
-            function: String = #function,
-            line: UInt = #line,
-            _ action: @escaping @Sendable (repeat each Input) async -> Void
-        ) {
-            self.id = CallSite(file: file, function: function, line: line)
-            self.action = action
-        }
-        
-        public func callAsFunction(_ input: repeat each Input) async {
-            await action(repeat each input)
-        }
-        
-        public static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.id == rhs.id
-        }
-    }
-}
+//@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+//@available(*, deprecated, message: "Highly Experimental: ViewAction is subject to breaking, use ViewCallback")
+//public extension Relux.UI {
+//    struct ViewAction<each Input: Sendable>: Sendable, Equatable, Identifiable {
+//
+//        public struct CallSite: Hashable, Sendable {
+//            let file: String
+//            let function: String
+//            let line: UInt
+//
+//            public init(file: String, function: String, line: UInt) {
+//                self.file = file; self.function = function; self.line = line
+//            }
+//        }
+//
+//        public let id: CallSite
+//
+//        private let action: @Sendable (repeat each Input) async -> Void
+//
+//        public init(
+//            file: String = #fileID,
+//            function: String = #function,
+//            line: UInt = #line,
+//            _ action: @escaping @Sendable (repeat each Input) async -> Void
+//        ) {
+//            self.id = CallSite(file: file, function: function, line: line)
+//            self.action = action
+//        }
+//
+//        public func callAsFunction(_ input: repeat each Input) async {
+//            await action(repeat each input)
+//        }
+//
+//        public static func == (lhs: Self, rhs: Self) -> Bool {
+//            lhs.id == rhs.id
+//        }
+//    }
+//}
