@@ -14,8 +14,11 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/relux-works/swift-relux.git", .upToNextMajor(from: "9.0.0")),
-        .package(url: "https://github.com/relux-works/swiftui-reluxrouter.git", .upToNextMajor(from: "11.0.0"))
+        // TODO: Switch back to remotes after local Relux package changes settle.
+        // .package(url: "https://github.com/relux-works/swift-relux.git", .upToNextMajor(from: "9.0.0")),
+        // .package(url: "https://github.com/relux-works/swiftui-reluxrouter.git", .upToNextMajor(from: "11.0.0")),
+        .package(path: "../swift-relux"),
+        .package(path: "../swiftui-reluxrouter")
     ],
     targets: [
         .target(
