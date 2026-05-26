@@ -71,6 +71,7 @@ extension Relux {
                             }
                     case let .some(relux):
                         content(relux)
+                            .relux(relux)
                             .passingObservableToEnvironment(fromStore: relux.store)
                 }
             }
