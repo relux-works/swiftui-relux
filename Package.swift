@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/relux-works/swift-relux.git", .upToNextMajor(from: "9.2.0")),
-        .package(url: "https://github.com/relux-works/swiftui-reluxrouter.git", .upToNextMajor(from: "11.0.3")),
+        .package(url: "https://github.com/relux-works/swiftui-reluxrouter.git", .upToNextMajor(from: "12.1.0")),
     ],
     targets: [
         .target(
